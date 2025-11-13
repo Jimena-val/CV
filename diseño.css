@@ -1,0 +1,82 @@
+/* Archivo: diseño.css */
+:root{
+  --bg1: #0d0d1a; /* negro azulado */
+  --blue: #00B4FF;
+  --purple: #6C3BB8;
+  --pink: #FF00A8;
+  --card-bg: #0f1724;
+  --muted: #9aa3bf;
+  --glass: rgba(255,255,255,0.03);
+  --accent-glow: 0 6px 30px rgba(108,59,184,0.18);
+  --max-width: 1100px;
+  font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:linear-gradient(120deg,var(--bg1) 0%, #101025 50%, #1b0f2a 100%);color:#e6eef8}
+.wrap{max-width:var(--max-width);margin:28px auto;padding:20px}
+
+/* HERO */
+.hero{display:flex;gap:28px;align-items:center;justify-content:space-between;padding:28px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:16px;box-shadow:var(--accent-glow)}
+.hero-left{flex:1}
+.hero-right{width:220px;display:flex;align-items:center;justify-content:center}
+.badge{display:inline-block;background:linear-gradient(90deg,var(--blue),var(--purple));padding:6px 12px;border-radius:999px;font-weight:600;color:#071022;letter-spacing:0.6px}
+.name{font-size:30px;margin:12px 0 6px;line-height:1}
+.name span{color:var(--pink);font-weight:800}
+.tagline{color:var(--muted);max-width:560px}
+.contacts{margin-top:16px;display:flex;flex-wrap:wrap;gap:10px}
+.contact-btn{background:var(--glass);padding:8px 12px;border-radius:10px;color:var(--blue);text-decoration:none;border:1px solid rgba(255,255,255,0.04);font-weight:600}
+.contact-btn:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(0, 179, 255, 0.323);}
+
+/* PHOTO RING */
+.photo-ring{position:relative;width:160px;height:160px;border-radius:50%;display:grid;place-items:center}
+.profile-pic{width:132px;height:132px;border-radius:50%;object-fit:cover;border:6px solid rgba(255,255,255,0.03);backdrop-filter:blur(6px)}
+.neon-top,.neon-bottom{position:absolute;left:-6px;right:-6px;height:4px;border-radius:4px;background:linear-gradient(90deg,var(--blue),var(--purple));opacity:0.85;filter:blur(10px)}
+.neon-top{top:-6px}
+.neon-bottom{bottom:-6px}
+
+/* MAIN CONTENT */
+.content{display:grid;grid-template-columns:1fr;gap:18px;margin-top:18px}
+.panel{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);}
+.section-title{font-size:18px;margin:0 0 10px;color:var(--blue);display:flex;align-items:center;gap:10px}
+.lead{color:var(--muted);line-height:1.6}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.card{background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);position:relative;overflow:hidden;transition:transform .36s cubic-bezier(.2,.9,.2,1),box-shadow .36s}
+.card::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 10% 20%, rgba(0,180,255,0.06), transparent 10%),radial-gradient(circle at 90% 80%, rgba(108,59,184,0.04), transparent 12%);pointer-events:none}
+.card:hover{transform:translateY(-8px) rotate(-1deg);box-shadow:0 18px 50px rgba(0,180,255,0.12)}
+
+.skill-card h3{margin:0 0 6px;color:var(--purple)}
+.skill-card p{margin:0;color:var(--muted)}
+
+.project-card .project-head{display:flex;justify-content:space-between;align-items:center}
+.role{font-size:13px;color:var(--muted)}
+.tags{margin-top:12px;color:var(--muted);font-size:13px}
+
+/* Hover neon accent */
+.card:hover::before{content:'';position:absolute;inset:-2px;background:linear-gradient(90deg,var(--blue),var(--purple),var(--pink));filter:blur(12px);opacity:0.55;mix-blend-mode:screen}
+
+/* Interest cards special */
+.interest-card h3{margin:0 0 6px;color:var(--pink)}
+.interest-card p{margin:0;color:var(--muted)}
+
+/* small interactions */
+.card h3{margin:0 0 6px}
+.card p{margin:0;color:var(--muted)}
+
+/* Responsive */
+@media (min-width:900px){.content{grid-template-columns:1fr 620px;grid-auto-rows:minmax(120px,auto)} .about{grid-column:1 / span 2}}
+@media (max-width:680px){.hero{flex-direction:column;align-items:flex-start}.hero-right{width:100%;display:flex;justify-content:flex-start}.photo-ring{width:120px;height:120px}.profile-pic{width:100px;height:100px}}
+
+/* Extra animated accents */
+@keyframes flicker {
+  0%, 100% {opacity:1}
+  50% {opacity:0.8;transform:translateY(-1px)}
+}
+.hero .badge{animation:flicker 3s infinite ease-in-out}
+
+/* Footer */
+.footer{margin-top:18px;text-align:center;color:var(--muted);font-size:14px}
+
+/* Print fallback */
+@media print{body{background:white;color:black}.hero, .card{box-shadow:none}.photo-ring{display:none}}
